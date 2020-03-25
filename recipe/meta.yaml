@@ -1,6 +1,6 @@
 {% set name = "numpy-stl" %}
-{% set version = "2.10.1" %}
-{% set sha256 = "f6b529b8a8112dfe456d4f7697c7aee0aca62be5a873879306afe4b26fca963c" %}
+{% set version = "2.11.0" %}
+{% set sha256 = "de0f844e854f828f3501285aa31aebe6385e6112341d0ed77228cfeb0039cbfc" %}
 
 package:
   name: {{ name|lower }}
@@ -12,8 +12,8 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 1
-  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
+  number: 0
+  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv
   entry_points:
     - stl = stl.main:main
     - stl2ascii = stl.main:to_ascii
@@ -44,12 +44,12 @@ about:
   license: BSD-3-Clause
   license_family: BSD
   license_file: LICENSE
-  summary: 'Library to make reading, writing and modifying both binary and ascii STL files easy.'
+  summary: Library to make reading, writing and modifying both binary and ascii STL files easy.
   description: |
     Simple library to make working with STL files (and 3D objects in general) fast and easy.
-    
+
     Due to all operations heavily relying on numpy this is one of the fastest STL editing libraries for Python available.
-    
+
   doc_url: https://numpy-stl.readthedocs.io
   dev_url: https://github.com/WoLpH/numpy-stl
 
