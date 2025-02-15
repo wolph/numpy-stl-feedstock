@@ -31,13 +31,12 @@ requirements:
     - python
     - setuptools
     - pip
-    - numpy
+    - numpy {{ numpy }}
     - pytest-runner
   run:
     - python
-    - {{ pin_compatible('numpy') }}
+    - numpy {{ numpy }}
     - python-utils
-    - enum34  # [py2k]
 
 test:
   imports:
