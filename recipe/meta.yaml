@@ -14,6 +14,7 @@ source:
 build:
   number: 1
   script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv
+  string: "npy{{ numpy }}py{{ CONDA_PY | replace('.', '') }}h{{ PKG_HASH }}_{{ build }}"
   entry_points:
     - stl = stl.main:main
     - stl2ascii = stl.main:to_ascii
@@ -31,37 +32,22 @@ requirements:
     - python
     - setuptools
     - pip
-    - numpy
+    - numpy {{ numpy }}
     - pytest-runner
   run:
     - python
-    - numpy
+    - numpy {{ numpy }}
     - python-utils
-
-outputs:
-  - name: {{ name }}
-    requirements:
-      build:
-        - python                                 # [build_platform != target_platform]
-        - cross-python_{{ target_platform }}     # [build_platform != target_platform]
-        - cython                                 # [build_platform != target_platform]
-        - numpy                                  # [build_platform != target_platform]
-        - {{ compiler('c') }}
-        - {{ stdlib("c") }}
-      host:
-        - python
-        - setuptools
-        - pip
-        - numpy
-        - pytest-runner
-      run:
-        - python
-        - numpy<2
-        - python-utils
 
 test:
   imports:
     - stl
+  requires:
+    - pytest
+  commands:
+    - stl --help
+    - stl2ascii --help
+    - stl2bin --help
 
 about:
   home: https://github.com/WoLpH/numpy-stl
