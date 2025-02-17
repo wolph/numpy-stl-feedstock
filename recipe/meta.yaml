@@ -14,7 +14,7 @@ source:
 build:
   number: 1
   script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv
-  string: "npy{{ numpy }}py{{ CONDA_PY | replace('.', '') }}h{{ PKG_HASH }}_{{ build }}"
+  string: "npy{{ numpy }}py{{ CONDA_PY | replace('.', '') }}h{{ PKG_HASH }}"
   entry_points:
     - stl = stl.main:main
     - stl2ascii = stl.main:to_ascii
